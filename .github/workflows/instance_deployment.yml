@@ -14,9 +14,5 @@ jobs:
           - name: checkout
             uses: actions/checkout@v7
 
-          - name: permissions
-            run: sudo chown ec2-user:ec2-user /var/www/html
-
-
           - name: copying the files
             run: sudo scp -o StrictHostKeyChecking=no -i ${{ secrets.AWS_KEY }}* ${{ vars.AWS_USER}}@${{ secrets.AWS_IP}}:/var/www/html
