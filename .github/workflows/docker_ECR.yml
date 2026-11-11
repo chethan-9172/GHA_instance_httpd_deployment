@@ -40,7 +40,7 @@ jobs:
           docker tag $ECR_REGISTRY/python-devops-app:v1 $ECR_REGISTRY/python-devops-app:latest
           echo ".......................image building and taging done......................."
 
-          echo "pushing started"
+          echo "................pushing started........................."
           docker push $ECR_REGISTRY/python-devops-app:v1
           docker push $ECR_REGISTRY/python-devops-app:latest
 
