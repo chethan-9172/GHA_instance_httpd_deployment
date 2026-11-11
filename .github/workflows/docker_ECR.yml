@@ -35,10 +35,10 @@ jobs:
 
       - name: build,tag,pushing
         run: |
-          echo "image building"
+          echo "...................image building.........................."
           docker build -t $ECR_REGISTRY/python-devops-app:v1 .
           docker tag $ECR_REGISTRY/python-devops-app:v1 $ECR_REGISTRY/python-devops-app:latest
-          echo "image building and taging done"
+          echo ".......................image building and taging done......................."
 
           echo "pushing started"
           docker push $ECR_REGISTRY/python-devops-app:v1
