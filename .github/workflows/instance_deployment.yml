@@ -14,8 +14,8 @@ jobs:
           - name: checkout
             uses: actions/checkout@v7
 
-           - name: key importing
-             run: |
+          - name: key importing
+            run: |
                echo "${{ secrets.AWS_KEY }}" > key.pem
                chmod 400 key.pem
 
