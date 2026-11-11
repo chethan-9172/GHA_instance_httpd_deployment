@@ -20,4 +20,4 @@ jobs:
                chmod 400 key.pem
 
           - name: copying the files
-            run: sudo scp -o StrictHostKeyChecking=no -i key.pem * ${{ vars.AWS_USER}}@${{ secrets.AWS_IP}}:/var/www/html
+            run: scp -o StrictHostKeyChecking=no -i key.pem -r * ${{ vars.AWS_USER}}@${{ secrets.AWS_IP}}:/var/www/html
