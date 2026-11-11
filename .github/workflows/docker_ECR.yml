@@ -44,6 +44,6 @@ jobs:
           docker push $ECR_REGISTRY/python-devops-app:v1
           docker push $ECR_REGISTRY/python-devops-app:latest
 
-          echo "pushing completed"
+          echo "...........pushing completed....................."
 
           
