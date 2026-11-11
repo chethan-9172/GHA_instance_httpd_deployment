@@ -1,0 +1,49 @@
+name: ECR registry push
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  ECR-to-pushing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.3.0
+        with:
+          aws-region: ap-south-1
+          role-to-assume:
+
+      - name: login to working-directory
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: creation of repo
+        id: ECR_repo
+        run: |
+          aws ecr create-repository \
+          --repository-name python-devops-app \
+          --region ap-south-1
+
+      - name: registry name
+        run: echo "ECR_REGISTRY=${{steps.login-ecr.outputs.registry}}" >>$GITHUB_ENV
+
+      - name: build,tag,pushing
+        run: |
+          echo "image building"
+          docker build -t $ECR_REGISTRY/python-devops-app:v1
+          docker tag $ECR_REGISTRY/python-devops-app:v1 $ECR_REGISTRY/python-devops-app:latest
+          echo "image building and taging done"
+
+          echo "pushing started"
+          docker push $ECR_REGISTRY/python-devops-app:v1
+          docker push $ECR_REGISTRY/python-devops-app:latest
+
+          echo "pushing completed"
+
+          
