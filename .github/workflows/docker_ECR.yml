@@ -18,7 +18,10 @@ jobs:
         with:
           aws-region: ap-south-1
           role-to-assume: arn:aws:iam::755480262879:role/GHA_ROLE
-
+      - name: files listing
+        run: |
+          pwd
+          ls -al
       - name: login to working-directory
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
